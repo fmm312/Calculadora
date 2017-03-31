@@ -6,7 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>Calculadora Online</title>    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="estilo.css" />	
+	<style type="text/css">
+		
+        /*Geral*/
+        .page-header{
+            text-align:center;
+            border:none;
+        }
+        
+        .container{
+            height:320px;            
+            border-radius:5px;            
+            background:rgba(0,0,0,0.6);           
+
+        }
+        
+        body{
+            background:url(imagens/landscape-mountains-nature-lake.jpg) center fixed;
+        }
+        
+        
+        /*########################################################################*/
+        
+        /*Visor*/       
+        
+        .resultado{
+            height:50px;
+            margin-bottom:15px;
+            text-align:right;
+            border:5px solid rgba(124,179,66,0.7);            
+            color:#7CB342;
+            font-weight:bold;
+            font-size:30px;
+        }
+        
+        
+        
+        
+        /*########################################################################*/
+        
+        /*Botões*/   
+        
+        .botao{
+            margin:4px;
+            width:16%;
+            background:rgba(0,0,0,0.0);
+            color:white;
+            border:none;  
+            font-size:20px;
+          
+        } 
+        
+        .botao:focus{
+            outline: none;
+            color:white;
+        }         
+       
+        
+        .botao-igual{
+            margin:5px;
+            height:100px;
+            position:absolute;           
+            width:15%;
+            background:rgba(197,225,165,0.4);
+            border:none;
+            color:white;
+            font-size:20px;
+        }  
+        
+         .botao-igual:focus{
+            outline: none;
+            color:white;
+        }
+        
+        
+        .botao-apagar{
+            margin:4px;
+            width:16%;
+            background:rgba(0,0,0,0.0);
+            color:white;
+            border:none; 
+            font-size:20px;
+          
+        }   
+        
+         .botao-apagar:focus{
+            outline: none;
+            color:white;
+            margin:4px;
+            width:16%;
+            background:rgba(0,0,0,0.0);            
+            border:none;
+                    
+        }
+        
+        
+        .botao-porcentagem{
+            outline: none;
+            color:white;
+            margin:4px;
+            width:16%;
+            background:rgba(0,0,0,0.0);            
+            border:none;
+            font-size:20px;
+        }
+        
+        .botao-porcentagem:focus{
+            outline: none;
+            color:white;
+        }
+        
+        
+        
+	</style>
 
   </head>
   <body>    
@@ -14,8 +126,10 @@
       <br><img src="imagens/1_Primary_logo_on_transparent_330x65.png" class="img-responsive col-sm-offset-4"><br>
       
       <section class="container col-sm-4 col-sx-12 col-sm-offset-4">
-           <br>          
-           <input type="text" class="form-control resultado" disabled >           
+           <br>
+          
+           <input type="text" class="form-control resultado" disabled >
+             
           
           
           <div class="row col-sm-12 col-sm-offset-1  ">
@@ -56,6 +170,64 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script lang="javascript" src="script.js"> </script>  
+    <script lang="javascript">      
+        
+       $(document).ready(function(){            
+            
+           //valor do botao aparecer no visor
+           $(".botao").click(function(){
+              $(".resultado").val($(".resultado").val() + $(this).val());              
+           });
+           
+           
+           //limpar o visor
+           $("#c").click(function(){
+               $(".resultado").val("");
+           });
+           
+           
+           //calcular valor que está no visor
+           $(".botao-igual").click(function(){
+              var calculo = eval($(".resultado").val());
+              $(".resultado").val(calculo);              
+           });         
+          
+           
+           
+           //mudança de cores ao passar mouse por cima dos botões
+           $(".botao, .botao-apagar, .botao-porcentagem").hover(function(){
+               $(this).css("background","rgba(197,225,165,0.4)")
+           },function(){
+                $(this).css("background","rgba(0,0,0,0.0)")             
+            });
+           
+           $(".botao-igual").hover(function(){
+               $(this).css("background","rgba(197,225,165,0.4)")
+           },function(){
+                $(this).css("background","rgba(197,225,165,0.4)")             
+            });
+           
+           
+           //apagando valores da tela 
+           $(".botao-apagar").click(function(){
+               var tamanho = $(".resultado").val().length;
+               var valor = $(".resultado").val(); 
+               
+               valor = valor.replace(valor.charAt(tamanho-1), "");
+               $(".resultado").val(valor);
+           });
+           
+           
+           //calculando porcentagem
+           $(".botao-porcentagem").click(function(){
+               valor = $(".resultado").val(); 
+               $(".resultado").val(Math.sqrt(valor));
+           });
+           
+        });
+         
+     
+        
+    </script>  
   </body>
 </html>
