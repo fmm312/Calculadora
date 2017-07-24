@@ -2,7 +2,7 @@
 
 Aplicação que simula uma calculadora real,com todas operações matemáticas básicas. Procurei desenvolver um layout bonito, agradável ao usuário.
 
-<a href="https://fmm312.github.io/Calculadora/" target="_blank">Demo :)</a>
+Demo: <a href="https://fmm312.github.io/Calculadora/">https://fmm312.github.io/Calculadora/</a>
 
 Projeto desenvolvido usando as seguintes tecnologias: 
  - HTML
